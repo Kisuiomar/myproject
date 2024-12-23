@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+            const response = await fetch('/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+            const result = await response.json();
+            alert(`Message received: ${result.message}`);
+        }
+    </script>
+</head>
+<body>
+    <h1>User Management</h1>
+    <div>
+        <label for="message">Enter Message:</label>
+        <input id="message" type="text" placeholder="Type your message here">
+        <button onclick="sendMessage()">Send Message</button>
+    </div>
+</body>
+</html>
